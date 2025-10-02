@@ -420,7 +420,7 @@ export const auth = betterAuth({
           scopes: [
             'https://www.googleapis.com/auth/userinfo.email',
             'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/drive.file',
+            'https://www.googleapis.com/auth/drive.readonly',
           ],
           prompt: 'consent',
           redirectURI: `${env.NEXT_PUBLIC_APP_URL}/api/auth/oauth2/callback/google-drive`,
@@ -434,7 +434,7 @@ export const auth = betterAuth({
           scopes: [
             'https://www.googleapis.com/auth/userinfo.email',
             'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/drive.file',
+            'https://www.googleapis.com/auth/drive.readonly',
           ],
           prompt: 'consent',
           redirectURI: `${env.NEXT_PUBLIC_APP_URL}/api/auth/oauth2/callback/google-docs`,
@@ -448,7 +448,7 @@ export const auth = betterAuth({
           scopes: [
             'https://www.googleapis.com/auth/userinfo.email',
             'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/drive.file',
+            'https://www.googleapis.com/auth/drive.readonly',
           ],
           prompt: 'consent',
           redirectURI: `${env.NEXT_PUBLIC_APP_URL}/api/auth/oauth2/callback/google-sheets`,
