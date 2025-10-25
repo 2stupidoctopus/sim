@@ -14,7 +14,10 @@ export const uploadTool: ToolConfig<GoogleDriveToolParams, GoogleDriveUploadResp
   oauth: {
     required: true,
     provider: 'google-drive',
-    additionalScopes: ['https://www.googleapis.com/auth/drive.readonly'],
+    additionalScopes: [
+      'https://www.googleapis.com/auth/drive.readonly',
+      'https://www.googleapis.com/auth/drive.file',
+    ],
   },
 
   params: {
