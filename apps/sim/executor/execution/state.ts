@@ -7,7 +7,6 @@ export interface LoopScope {
   item?: any
   items?: any[]
   condition?: string
-  skipFirstConditionCheck?: boolean
 }
 
 export interface ParallelScope {

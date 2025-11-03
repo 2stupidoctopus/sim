@@ -64,19 +64,9 @@ export class LoopOrchestrator {
       }
 
       case 'while':
-        scope.condition = loopConfig.whileCondition
-        logger.debug('While loop initialized', { loopId, condition: scope.condition })
-        break
-
       case 'doWhile':
-        if (loopConfig.doWhileCondition) {
-          scope.condition = loopConfig.doWhileCondition
-        } else {
-          scope.maxIterations = loopConfig.iterations || DEFAULTS.MAX_LOOP_ITERATIONS
-          scope.condition = buildLoopIndexCondition(scope.maxIterations)
-        }
-        scope.skipFirstConditionCheck = true
-        logger.debug('DoWhile loop initialized', { loopId, condition: scope.condition })
+        scope.condition = loopConfig.whileCondition || loopConfig.doWhileCondition
+        logger.debug('While loop initialized', { loopId, condition: scope.condition })
         break
 
       default:
@@ -136,17 +126,13 @@ export class LoopOrchestrator {
 
     scope.currentIterationOutputs.clear()
 
-    const isFirstIteration = scope.iteration === 0
-    const shouldSkipFirstCheck = scope.skipFirstConditionCheck && isFirstIteration
-    if (!shouldSkipFirstCheck) {
-      if (!this.evaluateCondition(ctx, scope, scope.iteration + 1)) {
-        logger.debug('Loop condition false for next iteration - exiting', {
-          loopId,
-          currentIteration: scope.iteration,
-          nextIteration: scope.iteration + 1,
-        })
-        return this.createExitResult(ctx, loopId, scope)
-      }
+    if (!this.evaluateCondition(ctx, scope, scope.iteration + 1)) {
+      logger.debug('Loop condition false for next iteration - exiting', {
+        loopId,
+        currentIteration: scope.iteration,
+        nextIteration: scope.iteration + 1,
+      })
+      return this.createExitResult(ctx, loopId, scope)
     }
 
     scope.iteration++
@@ -276,6 +262,13 @@ export class LoopOrchestrator {
   }
 
   shouldExecuteLoopNode(nodeId: string, loopId: string, context: ExecutionContext): boolean {
+    const scope = this.state.getLoopScope(loopId)
+    if (!scope) return true
+    
+    if (scope.iteration === 0) {
+      return this.evaluateCondition(context, scope, 0)
+    }
+    
     return true
   }
 
