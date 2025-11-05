@@ -35,7 +35,7 @@ export const githubWebhookTrigger: TriggerConfig = {
     },
     {
       id: 'webhookSecret',
-      title: 'Webhook Secret (Recommended)',
+      title: 'Webhook Secret',
       type: 'short-input',
       placeholder: 'Generate or enter a strong secret',
       description: 'Validates that webhook deliveries originate from GitHub.',
