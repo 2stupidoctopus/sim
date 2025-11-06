@@ -85,12 +85,6 @@ export const searchTool: ToolConfig<SearchParams, SearchResponse> = {
       visibility: 'user-only',
       description: 'Output format: markdown, html, text, screenshot, or pageshot',
     },
-    timeout: {
-      type: 'number',
-      required: false,
-      visibility: 'user-only',
-      description: 'Maximum seconds to wait for page load',
-    },
   },
 
   request: {
@@ -141,9 +135,6 @@ export const searchTool: ToolConfig<SearchParams, SearchResponse> = {
       }
       if (params.returnFormat) {
         headers['X-Return-Format'] = params.returnFormat
-      }
-      if (params.timeout) {
-        headers['X-Timeout'] = params.timeout.toString()
       }
 
       // Pagination headers
