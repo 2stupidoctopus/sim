@@ -145,7 +145,6 @@ interface CodeProps {
   isPreview?: boolean
   previewValue?: string | null
   disabled?: boolean
-  isConnecting?: boolean
   readOnly?: boolean
   collapsible?: boolean
   defaultCollapsed?: boolean
@@ -467,16 +466,17 @@ export function Code({
       const newCursorPosition = dropPosition + 1
       setCursorPosition(newCursorPosition)
 
-      setShowTags(true)
-      if (data.connectionData?.sourceBlockId) {
-        setActiveSourceBlockId(data.connectionData.sourceBlockId)
-      }
-
       setTimeout(() => {
         if (textarea) {
           textarea.focus()
           textarea.selectionStart = newCursorPosition
           textarea.selectionEnd = newCursorPosition
+
+          // Show tag dropdown after cursor is positioned
+          setShowTags(true)
+          if (data.connectionData?.sourceBlockId) {
+            setActiveSourceBlockId(data.connectionData.sourceBlockId)
+          }
         }
       }, 0)
     } catch (error) {
@@ -713,6 +713,9 @@ export function Code({
                 setShowEnvVars(false)
                 setSearchTerm('')
               }}
+              inputRef={{
+                current: editorRef.current?.querySelector('textarea') as HTMLTextAreaElement,
+              }}
             />
           )}
 
@@ -727,6 +730,9 @@ export function Code({
               onClose={() => {
                 setShowTags(false)
                 setActiveSourceBlockId(null)
+              }}
+              inputRef={{
+                current: editorRef.current?.querySelector('textarea') as HTMLTextAreaElement,
               }}
             />
           )}
