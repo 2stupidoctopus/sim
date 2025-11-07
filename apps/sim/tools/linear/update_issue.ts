@@ -95,10 +95,18 @@ export const linearUpdateIssueTool: ToolConfig<LinearUpdateIssueParams, LinearUp
           params.assigneeId !== ''
         )
           input.assigneeId = params.assigneeId
-        if (params.priority !== undefined && params.priority !== null)
-          input.priority = params.priority
-        if (params.estimate !== undefined && params.estimate !== null)
-          input.estimate = params.estimate
+        if (params.priority !== undefined && params.priority !== null) {
+          input.priority =
+            typeof params.priority === 'string'
+              ? Number.parseInt(params.priority, 10)
+              : params.priority
+        }
+        if (params.estimate !== undefined && params.estimate !== null) {
+          input.estimate =
+            typeof params.estimate === 'string'
+              ? Number.parseInt(params.estimate, 10)
+              : params.estimate
+        }
         if (
           params.labelIds !== undefined &&
           params.labelIds !== null &&
