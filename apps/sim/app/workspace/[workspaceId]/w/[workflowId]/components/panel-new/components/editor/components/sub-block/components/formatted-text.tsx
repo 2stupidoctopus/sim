@@ -46,7 +46,7 @@ export function formatDisplayText(text: string, context?: HighlightContext): Rea
   return parts.map((part, index) => {
     if (shouldHighlightPart(part) || part.match(/^\{\{[^}]+\}\}$/)) {
       return (
-        <span key={index} className='text-blue-500'>
+        <span key={index} className='text-[#34B5FF] dark:text-[#34B5FF]'>
           {part}
         </span>
       )
