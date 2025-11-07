@@ -64,10 +64,12 @@ export const discordUpdateRoleTool: ToolConfig<DiscordUpdateRoleParams, DiscordU
       }),
       body: (params: DiscordUpdateRoleParams) => {
         const body: any = {}
-        if (params.name) body.name = params.name
-        if (params.color !== undefined) body.color = params.color
-        if (params.hoist !== undefined) body.hoist = params.hoist
-        if (params.mentionable !== undefined) body.mentionable = params.mentionable
+        if (params.name !== undefined && params.name !== null && params.name !== '')
+          body.name = params.name
+        if (params.color !== undefined && params.color !== null) body.color = params.color
+        if (params.hoist !== undefined && params.hoist !== null) body.hoist = params.hoist
+        if (params.mentionable !== undefined && params.mentionable !== null)
+          body.mentionable = params.mentionable
         return body
       },
     },

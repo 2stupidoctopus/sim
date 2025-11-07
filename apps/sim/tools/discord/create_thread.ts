@@ -65,7 +65,11 @@ export const discordCreateThreadTool: ToolConfig<
       const body: any = {
         name: params.name,
       }
-      if (params.autoArchiveDuration) {
+      if (
+        params.autoArchiveDuration !== undefined &&
+        params.autoArchiveDuration !== null &&
+        params.autoArchiveDuration > 0
+      ) {
         body.auto_archive_duration = params.autoArchiveDuration
       }
       return body

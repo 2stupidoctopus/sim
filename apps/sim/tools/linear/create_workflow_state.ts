@@ -77,8 +77,14 @@ export const linearCreateWorkflowStateTool: ToolConfig<
         type: params.type,
       }
 
-      if (params.description !== undefined) input.description = params.description
-      if (params.position !== undefined) input.position = params.position
+      if (
+        params.description !== undefined &&
+        params.description !== null &&
+        params.description !== ''
+      )
+        input.description = params.description
+      if (params.position !== undefined && params.position !== null)
+        input.position = params.position
 
       return {
         query: `

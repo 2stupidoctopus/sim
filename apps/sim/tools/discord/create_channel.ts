@@ -65,9 +65,11 @@ export const discordCreateChannelTool: ToolConfig<
       const body: any = {
         name: params.name,
       }
-      if (params.type !== undefined) body.type = params.type
-      if (params.topic) body.topic = params.topic
-      if (params.parentId) body.parent_id = params.parentId
+      if (params.type !== undefined && params.type !== null) body.type = params.type
+      if (params.topic !== undefined && params.topic !== null && params.topic !== '')
+        body.topic = params.topic
+      if (params.parentId !== undefined && params.parentId !== null && params.parentId !== '')
+        body.parent_id = params.parentId
       return body
     },
   },
