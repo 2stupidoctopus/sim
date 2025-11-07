@@ -64,20 +64,22 @@ export const confluenceListSpacesTool: ToolConfig<
   },
 
   request: {
-    url: () => '/api/tools/confluence/spaces',
+    url: (params: ConfluenceListSpacesParams) => {
+      const query = new URLSearchParams({
+        domain: params.domain,
+        accessToken: params.accessToken,
+        limit: String(params.limit || 25),
+      })
+      if (params.cloudId) {
+        query.set('cloudId', params.cloudId)
+      }
+      return `/api/tools/confluence/spaces?${query.toString()}`
+    },
     method: 'GET',
     headers: (params: ConfluenceListSpacesParams) => {
       return {
         Accept: 'application/json',
         Authorization: `Bearer ${params.accessToken}`,
-      }
-    },
-    body: (params: ConfluenceListSpacesParams) => {
-      return {
-        domain: params.domain,
-        accessToken: params.accessToken,
-        cloudId: params.cloudId,
-        limit: params.limit || 25,
       }
     },
   },

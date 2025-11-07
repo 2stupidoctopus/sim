@@ -70,21 +70,23 @@ export const confluenceListCommentsTool: ToolConfig<
   },
 
   request: {
-    url: () => '/api/tools/confluence/comments',
+    url: (params: ConfluenceListCommentsParams) => {
+      const query = new URLSearchParams({
+        domain: params.domain,
+        accessToken: params.accessToken,
+        pageId: params.pageId,
+        limit: String(params.limit || 25),
+      })
+      if (params.cloudId) {
+        query.set('cloudId', params.cloudId)
+      }
+      return `/api/tools/confluence/comments?${query.toString()}`
+    },
     method: 'GET',
     headers: (params: ConfluenceListCommentsParams) => {
       return {
         Accept: 'application/json',
         Authorization: `Bearer ${params.accessToken}`,
-      }
-    },
-    body: (params: ConfluenceListCommentsParams) => {
-      return {
-        domain: params.domain,
-        accessToken: params.accessToken,
-        cloudId: params.cloudId,
-        pageId: params.pageId,
-        limit: params.limit || 25,
       }
     },
   },

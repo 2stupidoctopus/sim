@@ -71,21 +71,23 @@ export const confluenceListAttachmentsTool: ToolConfig<
   },
 
   request: {
-    url: () => '/api/tools/confluence/attachments',
+    url: (params: ConfluenceListAttachmentsParams) => {
+      const query = new URLSearchParams({
+        domain: params.domain,
+        accessToken: params.accessToken,
+        pageId: params.pageId,
+        limit: String(params.limit || 25),
+      })
+      if (params.cloudId) {
+        query.set('cloudId', params.cloudId)
+      }
+      return `/api/tools/confluence/attachments?${query.toString()}`
+    },
     method: 'GET',
     headers: (params: ConfluenceListAttachmentsParams) => {
       return {
         Accept: 'application/json',
         Authorization: `Bearer ${params.accessToken}`,
-      }
-    },
-    body: (params: ConfluenceListAttachmentsParams) => {
-      return {
-        domain: params.domain,
-        accessToken: params.accessToken,
-        cloudId: params.cloudId,
-        pageId: params.pageId,
-        limit: params.limit || 25,
       }
     },
   },
