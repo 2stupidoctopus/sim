@@ -103,7 +103,7 @@ export const MicrosoftPlannerBlock: BlockConfig<MicrosoftPlannerResponse> = {
       title: 'Description',
       type: 'long-input',
       layout: 'full',
-      placeholder: 'Enter task description (optional)',
+      placeholder: 'Enter task description ',
       condition: { field: 'operation', value: ['create_task'] },
     },
     {
@@ -119,7 +119,7 @@ export const MicrosoftPlannerBlock: BlockConfig<MicrosoftPlannerResponse> = {
       title: 'Assignee User ID',
       type: 'short-input',
       layout: 'full',
-      placeholder: 'Enter the user ID to assign this task to (optional)',
+      placeholder: 'Enter the user ID to assign this task to ',
       condition: { field: 'operation', value: ['create_task'] },
     },
     {
@@ -127,7 +127,7 @@ export const MicrosoftPlannerBlock: BlockConfig<MicrosoftPlannerResponse> = {
       title: 'Bucket ID',
       type: 'short-input',
       layout: 'full',
-      placeholder: 'Enter the bucket ID to organize the task (optional)',
+      placeholder: 'Enter the bucket ID to organize the task ',
       condition: { field: 'operation', value: ['create_task'] },
     },
   ],
