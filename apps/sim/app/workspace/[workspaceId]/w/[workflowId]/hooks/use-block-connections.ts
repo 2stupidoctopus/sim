@@ -1,4 +1,4 @@
-import { shallow } from 'zustand/shallow'
+import { shallow } from 'shallow'
 import { BlockPathCalculator } from '@/lib/block-path-calculator'
 import { createLogger } from '@/lib/logs/console/logger'
 import { getBlockOutputs } from '@/lib/workflows/block-outputs'
