@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { shallow } from 'zustand/shallow'
+import { shallow } from 'shallow'
 import { BlockPathCalculator } from '@/lib/block-path-calculator'
 import { SYSTEM_REFERENCE_PREFIXES } from '@/lib/workflows/references'
 import { normalizeBlockName } from '@/stores/workflows/utils'
