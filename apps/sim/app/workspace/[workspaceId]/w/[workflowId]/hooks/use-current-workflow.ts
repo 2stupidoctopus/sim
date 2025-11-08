@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import type { Edge } from 'reactflow'
-import { shallow } from 'zustand/shallow'
+import { shallow } from 'shallow'
 import { useWorkflowDiffStore } from '@/stores/workflow-diff/store'
 import type { DeploymentStatus } from '@/stores/workflows/registry/types'
 import { useWorkflowStore } from '@/stores/workflows/workflow/store'
