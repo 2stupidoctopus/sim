@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronRight } from 'lucide-react'
-import { shallow } from 'zustand/shallow'
+import { shallow } from 'shallow'
 import { extractFieldsFromSchema, parseResponseFormatSafely } from '@/lib/response-format'
 import { cn } from '@/lib/utils'
 import { getBlockOutputPaths, getBlockOutputType } from '@/lib/workflows/block-outputs'
